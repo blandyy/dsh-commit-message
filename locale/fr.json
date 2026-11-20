@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Bouton de message de commit",
+    "description": "Ajoute un bouton de génération du message de commit sous le compositeur et permet de modifier le message dans les Paramètres."
+  }
+}

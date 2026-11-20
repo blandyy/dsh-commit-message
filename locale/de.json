@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Commit-Nachricht-Schaltfläche",
+    "description": "Fügt eine Schaltfläche zum Erzeugen der Commit-Nachricht unter dem Eingabefeld hinzu und erlaubt das Bearbeiten der Nachricht in den Einstellungen."
+  }
+}

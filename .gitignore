@@ -1,0 +1,3 @@
+# User-specific prompt written by the Settings row; keep it out of commits.
+custom-prompt.txt
+.custom-prompt-*.tmp

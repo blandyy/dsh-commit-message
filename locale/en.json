@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Commit message button",
+    "description": "Adds a Generate commit message button below the composer and lets you edit the prompt in Settings."
+  }
+}
