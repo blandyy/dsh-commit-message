@@ -47,21 +47,43 @@ The shipped default prompt is Chinese (`根据本次修改内容生成commit mes
 
 ## Installation and enabling
 
-The plugin installs as a local directory link (`link:`) and needs no build step. The `web` profile already has it installed and enabled:
+Requirements: a working DSH installation (web) and `git`. The plugin installs as a local directory link (`link:`), with no build step and no extra dependencies.
 
-```json
-"@local/dsh-commit-message": "link:/home/muqi/code/dsh-commit-message"
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/blandyy/dsh-commit-message.git
+cd dsh-commit-message
 ```
 
-To install it into a profile:
+Keep the clone writable and in a stable location: the Settings row writes `custom-prompt.txt` there, and the profile links to the directory. If you move or delete it, add the plugin again from the new location.
 
-1. Open Plugins → Add plugin and choose `/home/muqi/code/dsh-commit-message`.
-2. Enable “Generate commit message” in the plugin list.
-3. Open a new conversation and confirm the button appears under the composer.
+### 2. Add it to DSH
 
-`dsh plugin --profile <name> add <directory>` only installs the package into the profile; enable it (add it to `dsh.profile.bundles`) in the Plugins panel.
+1. Open Plugins → Add plugin.
+2. Choose the cloned directory (the `dsh-commit-message` folder from the previous step).
+3. Enable “Generate commit message” in the plugin list.
 
-After code changes: restart `dsh web` for `index.js`, and refresh the page for `client.js` (restart if the old module is still served). To uninstall, disable or remove the plugin in the Plugins panel.
+You can also install the package from the command line inside the cloned directory and then enable it in the Plugins panel:
+
+```bash
+dsh plugin --profile web add "$PWD"
+```
+
+Replace `web` with your profile name. The command only installs the package; enable it (add it to `dsh.profile.bundles`) in the Plugins panel.
+
+### 3. Verify
+
+Open a new conversation. The “Generate commit message” button should appear under the composer; clicking it adds a user message containing the prompt to the conversation.
+
+### Updating and uninstalling
+
+```bash
+cd dsh-commit-message
+git pull
+```
+
+Restart `dsh web` for `index.js`; refresh the page for `client.js` (restart if the old module is still served). To uninstall, disable or remove the plugin in the Plugins panel.
 
 ## How it works
 

@@ -45,21 +45,43 @@
 
 ## 安装与启用
 
-插件以本地目录链接（`link:`）方式安装，无构建步骤。当前 `web` profile 已安装并启用：
+环境要求：已安装并可运行 DSH（Web 端），且本机有 `git`。插件以本地目录链接（`link:`）方式安装，无需构建，也没有额外依赖。
 
-```json
-"@local/dsh-commit-message": "link:/home/muqi/code/dsh-commit-message"
+### 1. 克隆仓库
+
+```bash
+git clone https://github.com/blandyy/dsh-commit-message.git
+cd dsh-commit-message
 ```
 
-安装到某个 profile：
+克隆目录需要保持可写，并放在固定位置：设置页保存提示词时会写入该目录下的 `custom-prompt.txt`，profile 也通过 `link:` 指向它。移动或删除目录后，插件需要在面板中重新添加。
 
-1. 打开 插件（Plugins）→ 添加插件（Add plugin），选择目录 `/home/muqi/code/dsh-commit-message`。
-2. 在插件列表中启用「生成提交信息」。
-3. 新开一个会话，确认输入框下方出现按钮。
+### 2. 添加到 DSH
 
-命令行 `dsh plugin --profile <name> add <目录>` 只负责把包装进 profile；是否启用（是否加入 profile 的 `dsh.profile.bundles`）仍需在插件面板中确认。
+1. 打开 插件（Plugins）→ 添加插件（Add plugin）。
+2. 选择克隆下来的目录（即上一步的 `dsh-commit-message`）。
+3. 在插件列表中启用「生成提交信息」。
 
-更新代码后：改 `index.js` 需重启 `dsh web`；改 `client.js` 刷新页面即可，若仍加载旧模块则重启。卸载请在插件面板中停用或移除。
+也可以在克隆目录中执行命令行安装，再到插件面板启用：
+
+```bash
+dsh plugin --profile web add "$PWD"
+```
+
+把 `web` 换成你的 profile 名。该命令只完成包安装，是否启用（是否加入 profile 的 `dsh.profile.bundles`）仍需在插件面板中确认。
+
+### 3. 验证
+
+新开一个会话，输入框下方应出现「生成提交信息」按钮；点击后，会话中会出现一条内容为提示词的用户消息。
+
+### 更新与卸载
+
+```bash
+cd dsh-commit-message
+git pull
+```
+
+改 `index.js` 需重启 `dsh web`；改 `client.js` 刷新页面即可，若仍加载旧模块则重启。卸载请在插件面板中停用或移除。
 
 ## 工作原理
 
